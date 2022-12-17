@@ -97,6 +97,7 @@ function handleShowResults() {
       resultsContainer.appendChild(liElement);
       
     }
+    showResultsBtn.removeEventListener('click', handleShowResults);
   }
 }
 
