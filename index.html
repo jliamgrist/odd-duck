@@ -2,19 +2,29 @@
 <html lang="en">
 
 <head>
-  <title>Grid Demo</title>
+  <title>Store</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
   <main class="grid-container">
-    <div class="grid-item1" style="background-color: #9b5de5">Header</div>
-    <div class="grid-item2" style="background-color: #f15bb5">Sidebar</div>
-    <div class="grid-item3" style="background-color: #fee440">Content</div>
-    <div class="grid-item4" style="background-color: #00bbf9">Article </div>
-    <div class="grid-item5" style="background-color: #00f5d4">Footer</div>
+    <div class="grid-item1" style="background-color: #9b5de5">Vote for products to be displayed at my store</div>
+    <div id="sidebar" class="grid-item2" style="background-color: #f15bb5">Results
+      <button id="results-Btn">Show Results</button>
+      <ul id="results-container"></ul>
+    </div>
+    <div class="grid-item3">
+      <section id="img-container">
+        <img id="img-one" src="" alt="">
+        <img id="img-two" src="" alt="">
+        <img id="img-three" src="" alt="">
+      </section>
+    </div>
+    <div id="chart" class="grid-item4" style="background-color: #00bbf9">Chart </div>
+    <div class="grid-item5" style="background-color: #00f5d4">Thank you for visiting my store! </div>
   </main>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
