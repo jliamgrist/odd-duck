@@ -178,7 +178,7 @@ function renderChart() {
 let retrievedDucks = localStorage.getItem('myDucks');
 let parsedDucks = JSON.parse(retrievedDucks);
 
-  const bag = new Duck('bag');d
+  const bag = new Duck('bag');
   const banana = new Duck('banana');
   const bathroom = new Duck('bathroom');
   const boots = new Duck('boots');
@@ -200,7 +200,14 @@ let parsedDucks = JSON.parse(retrievedDucks);
 
   ducksArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass);
 
-
+  // if parsedDucks is not null, then reassign the parseDucks properties to the ducksArray objects
+  
+  if (parsedDucks) {
+    for (let i = 0; i < ducksArray.length; i++){
+      ducksArray[i].votes = parsedDucks[i].votes;
+      ducksArray[i].views = parsedDucks[i].views;
+    }
+  }
 
   // **** Render Images and Results Container ****
 
