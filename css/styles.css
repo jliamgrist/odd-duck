@@ -60,16 +60,22 @@ h2 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 5%;
+  margin: 2%;
   flex-direction: column;
 }
 
 #img-container img {
   height: 200px;
   width: 200px;
+  padding: 3% 4% 3% 4%;
   border: 4px;
-  border-color: black;
+  border-radius: 10px;
+  margin-top: 4%; 
+  background-color: #123A3D;
+}
 
+#img-container img:hover {
+  background-color:#AAF1F7;
 }
 
 #results-container {
