@@ -5,7 +5,7 @@ console.log('aloha');
 // ******* GLOBALS *******
 
 let ducksArray = [];
-let votesRound = 5;
+let votesRound = 25;
 
 //  ****** DOM WINDOWS *******
 
@@ -13,8 +13,6 @@ let imgContainer = document.getElementById('img-container');
 let imgOne = document.getElementById('img-one');
 let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
-
-let resultsContainer = document.getElementById('results-container');
 
 let chartCanvas = document.getElementById('myChart');
 
