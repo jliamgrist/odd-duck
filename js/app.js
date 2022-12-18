@@ -5,7 +5,7 @@ console.log('aloha');
 // ******* GLOBALS *******
 
 let ducksArray = [];
-let votesRound = 5;
+let votesRound = 25;
 
 //  ****** DOM WINDOWS *******
 
