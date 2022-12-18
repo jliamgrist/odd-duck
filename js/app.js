@@ -17,11 +17,13 @@ let imgThree = document.getElementById('img-three');
 let showResultsBtn = document.getElementById('results-Btn');
 let resultsContainer = document.getElementById('results-container');
 
+let chartCanvas = document.getElementById('myChart');
+
 
 
 // ***** CONSTRUCTOR FUNCTION ******
 
-function Duck (name, imgExtension = 'jpg') {
+function Duck(name, imgExtension = 'jpg') {
   this.name = name;
   this.image = `img/${name}.${imgExtension}`;
   this.votesCount = 0;
@@ -40,12 +42,12 @@ function randomIndex() {
 let indexArray = [];
 function renderImg() {
 
-  while(indexArray.length < 6) {
+  while (indexArray.length < 6) {
     let randomNum = randomIndex();
     if (!indexArray.includes(randomNum)) {
       indexArray.push(randomNum);
     }
-    
+
   }
   let imgOneIndex = indexArray.pop();
   let imgTwoIndex = indexArray.pop();
@@ -53,7 +55,7 @@ function renderImg() {
 
 
   imgOne.src = ducksArray[imgOneIndex].image;
-  imgTwo.src = ducksArray[imgTwoIndex].image; 
+  imgTwo.src = ducksArray[imgTwoIndex].image;
   imgThree.src = ducksArray[imgThreeIndex].image;
   imgOne.title = ducksArray[imgOneIndex].name;
   imgTwo.title = ducksArray[imgTwoIndex].name;
@@ -67,6 +69,63 @@ function renderImg() {
   ducksArray[imgThreeIndex].views++;
 
 
+}
+// **** Render the Chart **** 
+
+function renderChart() {
+  // use the chart constructor, passing in the canvas element and the chart object of the data
+  
+  let chartLabels = [];
+  let votesArray = [];
+  let viewsArray = [];
+
+  for (let index = 0; index < ducksArray.length; index++) {
+    chartLabels.push(ducksArray[index].name);
+    votesArray.push(ducksArray[index].votesCount)  
+    viewsArray.push(ducksArray[index].views)
+  }
+  let chartObj = {
+    type: 'bar',
+    data: {
+      labels: chartLabels,
+      datasets: [{
+        label: '# of Votes',
+        data: votesArray,
+        borderWidth: 1
+      }, 
+      {
+        label: '# of Views',
+        data: viewsArray,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+      aspectRatio: 1|1,
+      plugins: {
+        legend: {
+          position: 'bottom',
+        }, 
+        title: {
+          display: true,
+          text: 'Results Chart'
+        }
+      }
+
+    },
+  };
+
+  // first argument is the canvas element
+  // second argument is the chart object
+
+  new Chart(chartCanvas, chartObj);
 }
 
 // **** EVENT HANDLERS *****
@@ -82,7 +141,7 @@ function handleClick(event) {
   renderImg();
   if (votesRound === 0) {
     imgContainer.removeEventListener('click', handleClick);
-    
+
 
 
   }
@@ -91,12 +150,7 @@ function handleClick(event) {
 
 function handleShowResults() {
   if (votesRound === 0) {
-    for (let index = 0; index < ducksArray.length; index++) {
-      let liElement = document.createElement('li');
-      liElement.textContent = `${ducksArray[index].name} had ${ducksArray[index].votesCount} and was shown ${ducksArray[index].views} times`;
-      resultsContainer.appendChild(liElement);
-      
-    }
+    renderChart();
     showResultsBtn.removeEventListener('click', handleShowResults);
   }
 }
@@ -126,6 +180,8 @@ const wineGlass = new Duck('wine-glass');
 ducksArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tauntaun, unicorn, waterCan, wineGlass);
 
 
+
+// **** Render Images and Results Container ****
 
 renderImg();
 
